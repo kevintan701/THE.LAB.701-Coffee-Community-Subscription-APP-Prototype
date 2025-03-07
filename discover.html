@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover - Coffee App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #fff;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .discover-screen {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: #f9f9f9;
+        }
+        
+        .discover-header {
+            background-color: var(--light-color);
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .discover-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .search-container {
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            background-color: white;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+        
+        .categories {
+            display: flex;
+            overflow-x: auto;
+            padding: 15px;
+            gap: 10px;
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .category {
+            padding: 8px 15px;
+            border-radius: 20px;
+            background-color: #f0f0f0;
+            font-size: 13px;
+            white-space: nowrap;
+            color: #555;
+        }
+        
+        .category.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .discover-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .see-all {
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        
+        .featured-products {
+            margin-bottom: 25px;
+        }
+        
+        .product-row {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding-bottom: 5px;
+        }
+        
+        .product-card {
+            width: 160px;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            flex-shrink: 0;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 12px;
+        }
+        
+        .product-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .product-origin {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+        
+        .product-price {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .coffee-shops {
+            margin-bottom: 25px;
+        }
+        
+        .shop-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .shop-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .shop-info {
+            padding: 15px;
+        }
+        
+        .shop-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .shop-name-location {
+            flex: 1;
+        }
+        
+        .shop-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 2px;
+            color: #333;
+        }
+        
+        .shop-location {
+            font-size: 13px;
+            color: #777;
+            display: flex;
+            align-items: center;
+        }
+        
+        .location-icon {
+            margin-right: 5px;
+            font-size: 12px;
+        }
+        
+        .shop-rating {
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+            background-color: var(--light-color);
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .rating-icon {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+        
+        .shop-details {
+            display: flex;
+            gap: 15px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        .shop-detail {
+            display: flex;
+            align-items: center;
+        }
+        
+        .detail-icon {
+            margin-right: 5px;
+            font-size: 12px;
+            color: var(--primary-color);
+        }
+        
+        .top-picks {
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-bar-left">
+            <span class="time">9:41</span>
+        </div>
+        <div class="status-bar-right">
+            <span class="signal-icon"><i class="fas fa-signal"></i></span>
+            <span class="wifi-icon"><i class="fas fa-wifi"></i></span>
+            <span class="battery-icon"><i class="fas fa-battery-full"></i></span>
+        </div>
+    </div>
+    
+    <!-- Content Area -->
+    <div class="app-content">
+        <div class="discover-screen">
+            <div class="discover-header">
+                <div class="discover-title">Discover</div>
+                <div class="search-container">
+                    <span class="search-icon"><i class="fas fa-search"></i></span>
+                    <input type="text" class="search-input" placeholder="Search coffee, shops, or roasters...">
+                </div>
+            </div>
+            
+            <div class="categories">
+                <div class="category active">All</div>
+                <div class="category">Coffee Beans</div>
+                <div class="category">Brew Gear</div>
+                <div class="category">Coffee Shops</div>
+                <div class="category">Roasters</div>
+                <div class="category">Subscriptions</div>
+            </div>
+            
+            <div class="discover-content">
+                <div class="featured-products">
+                    <div class="section-header">
+                        <div class="section-title">Featured Products</div>
+                        <a href="#" class="see-all">See All</a>
+                    </div>
+                    
+                    <div class="product-row">
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1559525750-a378265c0034?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Ethiopian Yirgacheffe" class="product-image">
+                            <div class="product-info">
+                                <div class="product-name">Ethiopian Yirgacheffe</div>
+                                <div class="product-origin">Origin: Ethiopia</div>
+                                <div class="product-price">$22.99</div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1576177629456-9a80ca096688?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Colombian Supremo" class="product-image">
+                            <div class="product-info">
+                                <div class="product-name">Colombian Supremo</div>
+                                <div class="product-origin">Origin: Colombia</div>
+                                <div class="product-price">$19.99</div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1521168277767-fe733d1f7689?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Java Arabica" class="product-image">
+                            <div class="product-info">
+                                <div class="product-name">Java Arabica</div>
+                                <div class="product-origin">Origin: Indonesia</div>
+                                <div class="product-price">$24.99</div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1559056199-641700fd58f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Costa Rican Tarrazu" class="product-image">
+                            <div class="product-info">
+                                <div class="product-name">Costa Rican Tarrazu</div>
+                                <div class="product-origin">Origin: Costa Rica</div>
+                                <div class="product-price">$21.99</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="coffee-shops">
+                    <div class="section-header">
+                        <div class="section-title">Coffee Shops Near You</div>
+                        <a href="#" class="see-all">See All</a>
+                    </div>
+                    
+                    <div class="shop-card">
+                        <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="The Coffee Lab" class="shop-image">
+                        <div class="shop-info">
+                            <div class="shop-header">
+                                <div class="shop-name-location">
+                                    <div class="shop-name">THE.LAB.701 Flagship Store</div>
+                                    <div class="shop-location">
+                                        <span class="location-icon"><i class="fas fa-map-marker-alt"></i></span>
+                                        <span>2.3 miles away</span>
+                                    </div>
+                                </div>
+                                <div class="shop-rating">
+                                    <span class="rating-icon"><i class="fas fa-star"></i></span>
+                                    <span>4.8</span>
+                                </div>
+                            </div>
+                            <div class="shop-details">
+                                <div class="shop-detail">
+                                    <span class="detail-icon"><i class="fas fa-clock"></i></span>
+                                    <span>Open until 8PM</span>
+                                </div>
+                                <div class="shop-detail">
+                                    <span class="detail-icon"><i class="fas fa-wifi"></i></span>
+                                    <span>Free Wi-Fi</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="shop-card">
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Coffee Corner" class="shop-image">
+                        <div class="shop-info">
+                            <div class="shop-header">
+                                <div class="shop-name-location">
+                                    <div class="shop-name">Artisan Coffee House</div>
+                                    <div class="shop-location">
+                                        <span class="location-icon"><i class="fas fa-map-marker-alt"></i></span>
+                                        <span>3.5 miles away</span>
+                                    </div>
+                                </div>
+                                <div class="shop-rating">
+                                    <span class="rating-icon"><i class="fas fa-star"></i></span>
+                                    <span>4.6</span>
+                                </div>
+                            </div>
+                            <div class="shop-details">
+                                <div class="shop-detail">
+                                    <span class="detail-icon"><i class="fas fa-clock"></i></span>
+                                    <span>Open until 7PM</span>
+                                </div>
+                                <div class="shop-detail">
+                                    <span class="detail-icon"><i class="fas fa-utensils"></i></span>
+                                    <span>Food available</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="top-picks">
+                    <div class="section-header">
+                        <div class="section-title">Top Picks For You</div>
+                        <a href="#" class="see-all">See All</a>
+                    </div>
+                    
+                    <div class="product-row">
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1564353129424-713d2e06f531?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Drip Coffee Maker" class="product-image">
+                            <div class="product-info">
+                                <div class="product-name">Pour Over Kit</div>
+                                <div class="product-origin">Brand: Hario</div>
+                                <div class="product-price">$29.99</div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1546549095-8d9537c5e335?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="French Press" class="product-image">
+                            <div class="product-info">
+                                <div class="product-name">French Press</div>
+                                <div class="product-origin">Brand: Bodum</div>
+                                <div class="product-price">$34.99</div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1621678422715-aab975b51218?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="AeroPress" class="product-image">
+                            <div class="product-info">
+                                <div class="product-name">AeroPress Go</div>
+                                <div class="product-origin">Brand: AeroPress</div>
+                                <div class="product-price">$31.95</div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1575021986639-0788fdb3c9c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Espresso Beans" class="product-image">
+                            <div class="product-info">
+                                <div class="product-name">Espresso Blend</div>
+                                <div class="product-origin">Origin: Mixed</div>
+                                <div class="product-price">$18.99</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tab Bar -->
+    <div class="tab-bar">
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-home"></i></div>
+            <div>Home</div>
+        </div>
+        <div class="tab-item active">
+            <div class="tab-icon"><i class="fas fa-mug-hot"></i></div>
+            <div>Discover</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-box"></i></div>
+            <div>Subscribe</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-user"></i></div>
+            <div>Profile</div>
+        </div>
+    </div>
+</body>
+</html> 

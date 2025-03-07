@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Coffee App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #fff;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .app-content {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .signup-screen {
+            height: 100%;
+            padding: 15px 25px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .signup-header {
+            margin-bottom: 20px;
+        }
+        
+        .signup-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 6px;
+        }
+        
+        .signup-subtitle {
+            font-size: 15px;
+            color: #666;
+        }
+        
+        .back-button {
+            color: var(--primary-color);
+            font-size: 20px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .form-group {
+            margin-bottom: 14px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #444;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        
+        .btn-primary {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            color: #999;
+        }
+        
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background-color: #ddd;
+        }
+        
+        .divider-text {
+            padding: 0 15px;
+            font-size: 14px;
+        }
+        
+        .terms {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin: 12px 0;
+            line-height: 1.4;
+        }
+        
+        .terms a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .login-prompt {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .login-prompt a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .social-login {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .social-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-bar-left">
+            <span class="time">9:41</span>
+        </div>
+        <div class="status-bar-right">
+            <span class="signal-icon"><i class="fas fa-signal"></i></span>
+            <span class="wifi-icon"><i class="fas fa-wifi"></i></span>
+            <span class="battery-icon"><i class="fas fa-battery-full"></i></span>
+        </div>
+    </div>
+    
+    <!-- Content Area -->
+    <div class="app-content">
+        <div class="signup-screen">
+            <a href="#" class="back-button"><i class="fas fa-arrow-left"></i></a>
+            
+            <div class="signup-header">
+                <div class="signup-title">Create Account</div>
+                <div class="signup-subtitle">Join our coffee community today</div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input" placeholder="Enter your full name">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" placeholder="Enter your email">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-input" placeholder="Create a password">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Confirm Password</label>
+                <input type="password" class="form-input" placeholder="Confirm your password">
+            </div>
+            
+            <button class="btn btn-primary btn-full mb-3">Create Account</button>
+            
+            <div class="divider">
+                <div class="divider-line"></div>
+                <div class="divider-text">Or sign up with</div>
+                <div class="divider-line"></div>
+            </div>
+            
+            <div class="social-login">
+                <button class="social-btn" aria-label="Sign up with Google">
+                    <i class="fab fa-google" style="color: #DB4437;"></i>
+                </button>
+                <button class="social-btn" aria-label="Sign up with Apple">
+                    <i class="fab fa-apple" style="color: #000;"></i>
+                </button>
+                <button class="social-btn" aria-label="Sign up with Facebook">
+                    <i class="fab fa-facebook" style="color: #3b5998;"></i>
+                </button>
+            </div>
+            
+            <div class="terms">
+                By signing up, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+            </div>
+            
+            <div class="login-prompt">
+                Already have an account? <a href="#">Login</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

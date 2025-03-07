@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription - Coffee App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #fff;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .subscription-screen {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: #f9f9f9;
+        }
+        
+        .subscription-header {
+            background-color: var(--light-color);
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .subscription-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .subscription-subtitle {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .subscription-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .current-subscription {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .subscription-info {
+            background-color: var(--light-color);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .subscription-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .subscription-detail {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .subscription-detail-value {
+            font-weight: 500;
+        }
+        
+        .next-delivery {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .delivery-icon {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-right: 15px;
+        }
+        
+        .delivery-info {
+            flex: 1;
+        }
+        
+        .delivery-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+        
+        .delivery-date {
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .subscription-action {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .modify-plan {
+            flex: 1;
+        }
+        
+        .skip-delivery {
+            flex: 1;
+        }
+        
+        .available-plans {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .plan-features {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        
+        .plan-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        .feature-icon {
+            color: var(--primary-color);
+            margin-right: 5px;
+            font-size: 14px;
+        }
+        
+        .learn-more {
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .learn-more a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-bar-left">
+            <span class="time">9:41</span>
+        </div>
+        <div class="status-bar-right">
+            <span class="signal-icon"><i class="fas fa-signal"></i></span>
+            <span class="wifi-icon"><i class="fas fa-wifi"></i></span>
+            <span class="battery-icon"><i class="fas fa-battery-full"></i></span>
+        </div>
+    </div>
+    
+    <!-- Content Area -->
+    <div class="app-content">
+        <div class="subscription-screen">
+            <div class="subscription-header">
+                <div class="subscription-title">Your Subscription</div>
+                <div class="subscription-subtitle">Manage your coffee deliveries</div>
+            </div>
+            
+            <div class="subscription-content">
+                <div class="current-subscription">
+                    <div class="section-title">Current Plan</div>
+                    
+                    <div class="subscription-info">
+                        <div class="subscription-name">Premium Coffee Club</div>
+                        
+                        <div class="subscription-detail">
+                            <div class="subscription-detail-label">Frequency</div>
+                            <div class="subscription-detail-value">Every 2 weeks</div>
+                        </div>
+                        
+                        <div class="subscription-detail">
+                            <div class="subscription-detail-label">Coffee Type</div>
+                            <div class="subscription-detail-value">Rotating Selection</div>
+                        </div>
+                        
+                        <div class="subscription-detail">
+                            <div class="subscription-detail-label">Grind</div>
+                            <div class="subscription-detail-value">Whole Bean</div>
+                        </div>
+                        
+                        <div class="subscription-detail">
+                            <div class="subscription-detail-label">Quantity</div>
+                            <div class="subscription-detail-value">12 oz bag</div>
+                        </div>
+                        
+                        <div class="subscription-detail">
+                            <div class="subscription-detail-label">Price</div>
+                            <div class="subscription-detail-value">$22.99 / delivery</div>
+                        </div>
+                    </div>
+                    
+                    <div class="next-delivery">
+                        <div class="delivery-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="delivery-info">
+                            <div class="delivery-title">Next Delivery</div>
+                            <div class="delivery-date">May 15, 2023 (Ethiopian Yirgacheffe)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="subscription-action mt-4">
+                        <button class="btn btn-primary modify-plan">Modify Plan</button>
+                        <button class="btn btn-secondary skip-delivery">Skip Next</button>
+                    </div>
+                </div>
+                
+                <div class="available-plans">
+                    <div class="section-title">Available Plans</div>
+                    
+                    <div class="plan-option">
+                        <div class="plan-name">Starter Pack</div>
+                        <div class="plan-price">$16.99 / month</div>
+                        <div class="plan-description">Perfect for coffee enthusiasts looking to explore new flavors.</div>
+                        <div class="plan-features">
+                            <div class="plan-feature">
+                                <span class="feature-icon"><i class="fas fa-check"></i></span>
+                                <span>One 8 oz bag per month</span>
+                            </div>
+                            <div class="plan-feature">
+                                <span class="feature-icon"><i class="fas fa-check"></i></span>
+                                <span>Choose from 3 rotating selections</span>
+                            </div>
+                            <div class="plan-feature">
+                                <span class="feature-icon"><i class="fas fa-check"></i></span>
+                                <span>Basic brewing guides</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-option selected">
+                        <div class="plan-name">Premium Coffee Club</div>
+                        <div class="plan-price">$22.99 / bi-weekly</div>
+                        <div class="plan-description">Our most popular plan for dedicated coffee lovers.</div>
+                        <div class="plan-features">
+                            <div class="plan-feature">
+                                <span class="feature-icon"><i class="fas fa-check"></i></span>
+                                <span>One 12 oz bag every two weeks</span>
+                            </div>
+                            <div class="plan-feature">
+                                <span class="feature-icon"><i class="fas fa-check"></i></span>
+                                <span>Access to all coffee selections</span>
+                            </div>
+                            <div class="plan-feature">
+                                <span class="feature-icon"><i class="fas fa-check"></i></span>
+                                <span>Detailed tasting notes & brewing guides</span>
+                            </div>
+                            <div class="plan-feature">
+                                <span class="feature-icon"><i class="fas fa-check"></i></span>
+                                <span>Free shipping</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-option">
+                        <div class="plan-name">Coffee Connoisseur</div>
+                        <div class="plan-price">$39.99 / month</div>
+                        <div class="plan-description">The ultimate coffee experience for true aficionados.</div>
+                        <div class="plan-features">
+                            <div class="plan-feature">
+                                <span class="feature-icon"><i class="fas fa-check"></i></span>
+                                <span>Two 12 oz bags per month</span>
+                            </div>
+                            <div class="plan-feature">
+                                <span class="feature-icon"><i class="fas fa-check"></i></span>
+                                <span>Access to exclusive limited batches</span>
+                            </div>
+                            <div class="plan-feature">
+                                <span class="feature-icon"><i class="fas fa-check"></i></span>
+                                <span>Coffee origin stories & producer insights</span>
+                            </div>
+                            <div class="plan-feature">
+                                <span class="feature-icon"><i class="fas fa-check"></i></span>
+                                <span>Quarterly coffee accessories</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="learn-more">
+                        <a href="#">Learn more about our subscription options</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tab Bar -->
+    <div class="tab-bar">
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-home"></i></div>
+            <div>Home</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-mug-hot"></i></div>
+            <div>Discover</div>
+        </div>
+        <div class="tab-item active">
+            <div class="tab-icon"><i class="fas fa-box"></i></div>
+            <div>Subscribe</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-user"></i></div>
+            <div>Profile</div>
+        </div>
+    </div>
+</body>
+</html> 

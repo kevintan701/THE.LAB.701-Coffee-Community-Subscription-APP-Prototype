@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History - Coffee App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #fff;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .order-history-screen {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: #f9f9f9;
+        }
+        
+        .order-header {
+            background-color: var(--light-color);
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .back-button {
+            color: var(--primary-color);
+            font-size: 20px;
+            margin-right: 15px;
+        }
+        
+        .order-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .order-filters {
+            display: flex;
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px;
+            gap: 10px;
+            overflow-x: auto;
+        }
+        
+        .filter-button {
+            padding: 8px 15px;
+            border-radius: 20px;
+            background-color: #f0f0f0;
+            font-size: 13px;
+            white-space: nowrap;
+            color: #555;
+            border: none;
+        }
+        
+        .filter-button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .order-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+        
+        .order-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .order-info {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .order-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .order-number {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .order-date {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .order-status {
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .status-delivered {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .status-processing {
+            background-color: #e3f2fd;
+            color: #1565c0;
+        }
+        
+        .status-shipping {
+            background-color: #fff8e1;
+            color: #f57f17;
+        }
+        
+        .order-total {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .order-items {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .order-details {
+            padding: 15px;
+        }
+        
+        .order-product {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .product-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            flex: 1;
+        }
+        
+        .product-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .product-variant {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+        
+        .product-price {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .order-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .action-button {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .track-button {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .reorder-button {
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .shipping-info {
+            padding: 15px;
+            border-top: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .shipping-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .shipping-address {
+            font-size: 13px;
+            color: #444;
+            line-height: 1.5;
+        }
+        
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .empty-icon {
+            font-size: 60px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .empty-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .empty-subtext {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 20px;
+            max-width: 250px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-bar-left">
+            <span class="time">9:41</span>
+        </div>
+        <div class="status-bar-right">
+            <span class="signal-icon"><i class="fas fa-signal"></i></span>
+            <span class="wifi-icon"><i class="fas fa-wifi"></i></span>
+            <span class="battery-icon"><i class="fas fa-battery-full"></i></span>
+        </div>
+    </div>
+    
+    <!-- Content Area -->
+    <div class="app-content">
+        <div class="order-history-screen">
+            <div class="order-header">
+                <a href="#" class="back-button" aria-label="Go back">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="order-title">Order History</div>
+            </div>
+            
+            <div class="order-filters">
+                <button class="filter-button active">All Orders</button>
+                <button class="filter-button">Processing</button>
+                <button class="filter-button">Shipped</button>
+                <button class="filter-button">Delivered</button>
+                <button class="filter-button">Subscription</button>
+            </div>
+            
+            <div class="order-content">
+                <div class="order-card">
+                    <div class="order-info">
+                        <div class="order-header-row">
+                            <div class="order-number">Order #10358</div>
+                            <div class="order-status status-delivered">Delivered</div>
+                        </div>
+                        <div class="order-date">May 10, 2023</div>
+                        <div class="order-total">$22.99</div>
+                        <div class="order-items">1 item</div>
+                    </div>
+                    
+                    <div class="order-details">
+                        <div class="order-product">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1559525750-a378265c0034?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80" alt="Ethiopian Yirgacheffe">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">Ethiopian Yirgacheffe</div>
+                                <div class="product-variant">Whole Bean, 12 oz</div>
+                                <div class="product-price">$22.99</div>
+                            </div>
+                        </div>
+                        
+                        <div class="order-actions">
+                            <a href="#" class="action-button reorder-button">Reorder</a>
+                            <a href="#" class="action-button track-button">Leave Review</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-card">
+                    <div class="order-info">
+                        <div class="order-header-row">
+                            <div class="order-number">Order #10289</div>
+                            <div class="order-status status-shipping">Shipped</div>
+                        </div>
+                        <div class="order-date">May 1, 2023</div>
+                        <div class="order-total">$45.98</div>
+                        <div class="order-items">2 items</div>
+                    </div>
+                    
+                    <div class="order-details">
+                        <div class="order-product">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1576177629456-9a80ca096688?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80" alt="Colombian Supremo">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">Colombian Supremo</div>
+                                <div class="product-variant">Ground - Medium, 12 oz</div>
+                                <div class="product-price">$19.99</div>
+                            </div>
+                        </div>
+                        
+                        <div class="order-product">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1564353129424-713d2e06f531?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80" alt="Pour Over Kit">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">Pour Over Kit</div>
+                                <div class="product-variant">Glass, 350ml</div>
+                                <div class="product-price">$25.99</div>
+                            </div>
+                        </div>
+                        
+                        <div class="shipping-info">
+                            <div class="shipping-title">Shipping Information</div>
+                            <div class="shipping-address">
+                                Carrier: USPS<br>
+                                Tracking Number: 9405511899562537286781<br>
+                                Estimated Delivery: May 12, 2023
+                            </div>
+                        </div>
+                        
+                        <div class="order-actions">
+                            <a href="#" class="action-button reorder-button">Reorder</a>
+                            <a href="#" class="action-button track-button">Track Order</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-card">
+                    <div class="order-info">
+                        <div class="order-header-row">
+                            <div class="order-number">Order #10146</div>
+                            <div class="order-status status-processing">Processing</div>
+                        </div>
+                        <div class="order-date">April 25, 2023</div>
+                        <div class="order-total">$42.98</div>
+                        <div class="order-items">2 items</div>
+                    </div>
+                    
+                    <div class="order-details">
+                        <div class="order-product">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1521168277767-fe733d1f7689?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80" alt="Java Arabica">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">Java Arabica</div>
+                                <div class="product-variant">Whole Bean, 1 lb</div>
+                                <div class="product-price">$24.99</div>
+                            </div>
+                        </div>
+                        
+                        <div class="order-product">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1575021986639-0788fdb3c9c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80" alt="Espresso Blend">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">Espresso Blend</div>
+                                <div class="product-variant">Ground - Fine, 12 oz</div>
+                                <div class="product-price">$17.99</div>
+                            </div>
+                        </div>
+                        
+                        <div class="order-actions">
+                            <a href="#" class="action-button track-button">Track Order</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Uncomment this for an empty state
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="empty-text">No orders yet</div>
+                    <div class="empty-subtext">When you place orders, they will appear here for you to track and review.</div>
+                    <button class="btn btn-primary">Start Shopping</button>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tab Bar -->
+    <div class="tab-bar">
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-home"></i></div>
+            <div>Home</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-mug-hot"></i></div>
+            <div>Discover</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-box"></i></div>
+            <div>Subscribe</div>
+        </div>
+        <div class="tab-item active">
+            <div class="tab-icon"><i class="fas fa-user"></i></div>
+            <div>Profile</div>
+        </div>
+    </div>
+</body>
+</html> 

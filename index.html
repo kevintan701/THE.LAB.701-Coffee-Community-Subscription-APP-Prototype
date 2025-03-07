@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Community & Subscription App Prototype</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #8D6E63;
+            --light-color: #F5F5DC;
+            --text-color: #333;
+        }
+        
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            min-height: 100vh;
+            overflow-y: auto;
+            background-color: #f5f5f5;
+            color: var(--text-color);
+        }
+        
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+        
+        .project-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .description {
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            text-align: center;
+            color: #555;
+            line-height: 1.6;
+            font-size: 16px;
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .description h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .description p {
+            margin-bottom: 15px;
+        }
+        
+        .description ul {
+            text-align: left;
+            padding-left: 30px;
+            margin: 15px 0;
+        }
+        
+        .description li {
+            margin-bottom: 8px;
+        }
+        
+        .screens-section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            color: var(--primary-color);
+            text-align: center;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-color);
+        }
+        
+        .frames-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding-bottom: 30px;
+        }
+        
+        .frame-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .frame-wrapper:hover {
+            transform: translateY(-5px);
+        }
+        
+        .frame-label {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: var(--primary-color);
+            background-color: var(--light-color);
+            padding: 5px 15px;
+            border-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .device-frame {
+            width: 350px; /* Slightly smaller for better fit */
+            height: 700px; /* Slightly smaller for better fit */
+            background-color: #1a1a1a;
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .device-frame:hover {
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.25);
+        }
+        
+        .screen-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 30px;
+            overflow: hidden;
+            background-color: white;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                overflow-y: scroll;
+            }
+            
+            .frames-container {
+                gap: 20px;
+            }
+            
+            .device-frame {
+                width: 280px;
+                height: 580px;
+            }
+            
+            .description {
+                padding: 15px;
+            }
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #888;
+            font-size: 14px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="project-container">
+        <h1>THE.LAB.701 Coffee Community & Subscription App</h1>
+        
+        <div class="description">
+            <h2>Project Overview</h2>
+            <p>A high-fidelity prototype for a digital coffee community and subscription app that connects coffee enthusiasts with premium coffee products and like-minded individuals. This app offers a seamless experience for discovering new coffee varieties, managing subscriptions, and engaging with a passionate coffee community.</p>
+            
+            <h3>Vision & Purpose</h3>
+            <p>THE.LAB.701 Coffee Community app aims to revolutionize how coffee lovers discover, purchase, and experience specialty coffee. In a market saturated with generic coffee offerings, our platform creates a curated ecosystem where quality, sustainability, and community converge. We're not just selling coffee—we're building a digital third space where the rituals and pleasures of coffee can be shared and celebrated.</p>
+            
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Personalized Coffee Discovery:</strong> Browse and discover coffee products based on flavor profiles, origin, and roast levels. Our recommendation engine learns from your preferences to suggest new coffees that match your taste profile.</li>
+                
+                <li><strong>Flexible Subscription System:</strong> Customize delivery frequency (weekly, bi-weekly, or monthly), quantity, and grind options for regular coffee deliveries. Easily pause, skip, or modify your subscription anytime.</li>
+                
+                <li><strong>Community Engagement:</strong> Share brewing techniques, rate products, and connect with other coffee enthusiasts. Post your coffee experiences, follow other users, and participate in discussions about brewing methods, equipment, and coffee origins.</li>
+                
+                <li><strong>Seamless Ordering:</strong> Easy checkout process with saved payment methods and shipping addresses. One-click reordering for favorite products and subscription management.</li>
+                
+                <li><strong>User Profiles:</strong> Track order history, manage preferences, and view community contributions. Build your coffee journey timeline and showcase your tasting notes and favorite coffees.</li>
+                
+                <li><strong>Brewing Guides:</strong> Access detailed brewing instructions for different methods (pour-over, French press, espresso, etc.) optimized for each coffee variety to achieve the perfect cup.</li>
+                
+                <li><strong>Coffee Education:</strong> Learn about coffee origins, processing methods, and flavor characteristics through interactive content and storytelling elements that highlight the journey from farm to cup.</li>
+            </ul>
+            
+            <h3>Target Audience</h3>
+            <p>The app is designed for coffee enthusiasts across the spectrum—from curious beginners to seasoned connoisseurs. Primary user segments include:</p>
+            <ul>
+                <li><strong>Coffee Explorers:</strong> Individuals eager to expand their coffee palate beyond commercial offerings</li>
+                <li><strong>Convenience Seekers:</strong> Busy professionals who value quality coffee delivered on their schedule</li>
+                <li><strong>Community Builders:</strong> Social coffee lovers who enjoy sharing experiences and learning from others</li>
+                <li><strong>Sustainability Advocates:</strong> Consumers concerned with ethical sourcing and environmental impact</li>
+            </ul>
+            
+            <h3>Design Approach</h3>
+            <p>The design follows iOS design guidelines with a warm, coffee-inspired color palette dominated by rich browns and complementary neutral tones. Special attention was paid to creating an intuitive user experience that makes discovering and purchasing coffee products a delightful journey.</p>
+            
+            <p>Design principles that guided our work:</p>
+            <ul>
+                <li><strong>Warmth & Invitation:</strong> Colors and imagery evoke the comforting, inviting nature of coffee culture</li>
+                <li><strong>Clarity & Simplicity:</strong> Clean layouts with focused content that guides users intuitively</li>
+                <li><strong>Thoughtful Motion:</strong> Subtle animations that enhance the experience without distracting</li>
+                <li><strong>Consistency:</strong> Unified visual language across all screens to build familiarity and ease of use</li>
+                <li><strong>Accessibility:</strong> Inclusive design choices ensuring the app is usable by people of all abilities</li>
+            </ul>
+            
+            <h3>Technical Implementation</h3>
+            <p>This high-fidelity prototype is built using HTML, CSS, and minimal JavaScript to simulate the app experience. Key technical aspects include:</p>
+            <ul>
+                <li>Responsive layouts that adapt to different screen sizes</li>
+                <li>Custom CSS variables for consistent styling</li>
+                <li>Semantic HTML structure for accessibility</li>
+                <li>CSS animations for interactive elements</li>
+                <li>Modular component design for scalability</li>
+            </ul>
+            
+            <p>The prototype showcases a complete user journey from onboarding to subscription management, with careful attention to intuitive navigation, responsive design, and delightful micro-interactions that enhance the overall coffee experience.</p>
+            
+            <h3>Future Development</h3>
+            <p>While this prototype demonstrates core functionality, future development would include:</p>
+            <ul>
+                <li>Backend integration with a robust e-commerce platform</li>
+                <li>User authentication and personalization features</li>
+                <li>Advanced recommendation algorithms</li>
+                <li>Real-time community features including live events and expert Q&A sessions</li>
+                <li>Augmented reality features for exploring coffee packaging and brewing setups</li>
+            </ul>
+        </div>
+        
+        <div class="screens-section">
+            <div class="section-title">Onboarding & Authentication</div>
+            <div class="frames-container">
+                <!-- Welcome/Onboarding Screen -->
+                <div class="frame-wrapper">
+                    <div class="frame-label">Welcome Screen</div>
+                    <div class="device-frame">
+                        <iframe src="welcome.html" class="screen-iframe" frameborder="0"></iframe>
+                    </div>
+                </div>
+                
+                <!-- Login Screen -->
+                <div class="frame-wrapper">
+                    <div class="frame-label">Login Screen</div>
+                    <div class="device-frame">
+                        <iframe src="login.html" class="screen-iframe" frameborder="0"></iframe>
+                    </div>
+                </div>
+                
+                <!-- Signup Screen -->
+                <div class="frame-wrapper">
+                    <div class="frame-label">Signup Screen</div>
+                    <div class="device-frame">
+                        <iframe src="signup.html" class="screen-iframe" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="screens-section">
+            <div class="section-title">Core Features</div>
+            <div class="frames-container">
+                <!-- Home Feed Screen -->
+                <div class="frame-wrapper">
+                    <div class="frame-label">Home Feed</div>
+                    <div class="device-frame">
+                        <iframe src="home.html" class="screen-iframe" frameborder="0"></iframe>
+                    </div>
+                </div>
+                
+                <!-- Discover Screen -->
+                <div class="frame-wrapper">
+                    <div class="frame-label">Discover</div>
+                    <div class="device-frame">
+                        <iframe src="discover.html" class="screen-iframe" frameborder="0"></iframe>
+                    </div>
+                </div>
+                
+                <!-- Product Detail Screen -->
+                <div class="frame-wrapper">
+                    <div class="frame-label">Product Detail</div>
+                    <div class="device-frame">
+                        <iframe src="product-detail.html" class="screen-iframe" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="screens-section">
+            <div class="section-title">Subscription & Orders</div>
+            <div class="frames-container">
+                <!-- Subscription Screen -->
+                <div class="frame-wrapper">
+                    <div class="frame-label">Subscription Management</div>
+                    <div class="device-frame">
+                        <iframe src="subscription.html" class="screen-iframe" frameborder="0"></iframe>
+                    </div>
+                </div>
+                
+                <!-- Checkout Screen -->
+                <div class="frame-wrapper">
+                    <div class="frame-label">Checkout</div>
+                    <div class="device-frame">
+                        <iframe src="checkout.html" class="screen-iframe" frameborder="0"></iframe>
+                    </div>
+                </div>
+                
+                <!-- Order History Screen -->
+                <div class="frame-wrapper">
+                    <div class="frame-label">Order History</div>
+                    <div class="device-frame">
+                        <iframe src="order-history.html" class="screen-iframe" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="screens-section">
+            <div class="section-title">User Profile & Settings</div>
+            <div class="frames-container">
+                <!-- Profile Screen -->
+                <div class="frame-wrapper">
+                    <div class="frame-label">Profile</div>
+                    <div class="device-frame">
+                        <iframe src="profile.html" class="screen-iframe" frameborder="0"></iframe>
+                    </div>
+                </div>
+                
+                <!-- Settings Screen -->
+                <div class="frame-wrapper">
+                    <div class="frame-label">Settings</div>
+                    <div class="device-frame">
+                        <iframe src="settings.html" class="screen-iframe" frameborder="0"></iframe>
+                    </div>
+                </div>
+                
+                <!-- Notifications Screen -->
+                <div class="frame-wrapper">
+                    <div class="frame-label">Notifications</div>
+                    <div class="device-frame">
+                        <iframe src="notifications.html" class="screen-iframe" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 THE.LAB.701 Coffee Community & Subscription App. High-fidelity prototype designed for illustrative purposes.</p>
+            <p>All product images sourced from Unsplash. This prototype is for demonstration purposes only.</p>
+        </div>
+    </div>
+</body>
+</html> 
