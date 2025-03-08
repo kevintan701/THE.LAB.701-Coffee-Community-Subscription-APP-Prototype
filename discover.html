@@ -131,6 +131,7 @@
             width: 100%;
             height: 140px;
             object-fit: cover;
+            background-color: #f2f2f2; /* Fallback color in case image fails to load */
         }
         
         .product-info {
@@ -273,59 +274,14 @@
             
             <div class="categories">
                 <div class="category active">All</div>
-                <div class="category">Coffee Beans</div>
-                <div class="category">Brew Gear</div>
                 <div class="category">Coffee Shops</div>
                 <div class="category">Roasters</div>
-                <div class="category">Subscriptions</div>
+                <div class="category">Brewing Methods</div>
+                <div class="category">Coffee Stories</div>
+                <div class="category">Events</div>
             </div>
             
             <div class="discover-content">
-                <div class="featured-products">
-                    <div class="section-header">
-                        <div class="section-title">Featured Products</div>
-                        <a href="#" class="see-all">See All</a>
-                    </div>
-                    
-                    <div class="product-row">
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1559525750-a378265c0034?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Ethiopian Yirgacheffe" class="product-image">
-                            <div class="product-info">
-                                <div class="product-name">Ethiopian Yirgacheffe</div>
-                                <div class="product-origin">Origin: Ethiopia</div>
-                                <div class="product-price">$22.99</div>
-                            </div>
-                        </div>
-                        
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1576177629456-9a80ca096688?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Colombian Supremo" class="product-image">
-                            <div class="product-info">
-                                <div class="product-name">Colombian Supremo</div>
-                                <div class="product-origin">Origin: Colombia</div>
-                                <div class="product-price">$19.99</div>
-                            </div>
-                        </div>
-                        
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1521168277767-fe733d1f7689?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Java Arabica" class="product-image">
-                            <div class="product-info">
-                                <div class="product-name">Java Arabica</div>
-                                <div class="product-origin">Origin: Indonesia</div>
-                                <div class="product-price">$24.99</div>
-                            </div>
-                        </div>
-                        
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1559056199-641700fd58f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Costa Rican Tarrazu" class="product-image">
-                            <div class="product-info">
-                                <div class="product-name">Costa Rican Tarrazu</div>
-                                <div class="product-origin">Origin: Costa Rica</div>
-                                <div class="product-price">$21.99</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
                 <div class="coffee-shops">
                     <div class="section-header">
                         <div class="section-title">Coffee Shops Near You</div>
@@ -333,32 +289,34 @@
                     </div>
                     
                     <div class="shop-card">
-                        <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="The Coffee Lab" class="shop-image">
-                        <div class="shop-info">
-                            <div class="shop-header">
-                                <div class="shop-name-location">
-                                    <div class="shop-name">THE.LAB.701 Flagship Store</div>
-                                    <div class="shop-location">
-                                        <span class="location-icon"><i class="fas fa-map-marker-alt"></i></span>
-                                        <span>2.3 miles away</span>
+                        <a href="coffee-shop-detail.html" style="text-decoration: none; color: inherit;">
+                            <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="The Coffee Lab" class="shop-image">
+                            <div class="shop-info">
+                                <div class="shop-header">
+                                    <div class="shop-name-location">
+                                        <div class="shop-name">THE.LAB.701 Flagship Store</div>
+                                        <div class="shop-location">
+                                            <span class="location-icon"><i class="fas fa-map-marker-alt"></i></span>
+                                            <span>2.3 miles away</span>
+                                        </div>
+                                    </div>
+                                    <div class="shop-rating">
+                                        <span class="rating-icon"><i class="fas fa-star"></i></span>
+                                        <span>4.8</span>
                                     </div>
                                 </div>
-                                <div class="shop-rating">
-                                    <span class="rating-icon"><i class="fas fa-star"></i></span>
-                                    <span>4.8</span>
+                                <div class="shop-details">
+                                    <div class="shop-detail">
+                                        <span class="detail-icon"><i class="fas fa-clock"></i></span>
+                                        <span>Open until 8PM</span>
+                                    </div>
+                                    <div class="shop-detail">
+                                        <span class="detail-icon"><i class="fas fa-wifi"></i></span>
+                                        <span>Free Wi-Fi</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="shop-details">
-                                <div class="shop-detail">
-                                    <span class="detail-icon"><i class="fas fa-clock"></i></span>
-                                    <span>Open until 8PM</span>
-                                </div>
-                                <div class="shop-detail">
-                                    <span class="detail-icon"><i class="fas fa-wifi"></i></span>
-                                    <span>Free Wi-Fi</span>
-                                </div>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                     
                     <div class="shop-card">
@@ -391,46 +349,78 @@
                     </div>
                 </div>
                 
-                <div class="top-picks">
+                <div class="featured-content">
                     <div class="section-header">
-                        <div class="section-title">Top Picks For You</div>
+                        <div class="section-title">Coffee Knowledge</div>
                         <a href="#" class="see-all">See All</a>
                     </div>
                     
                     <div class="product-row">
                         <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1564353129424-713d2e06f531?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Drip Coffee Maker" class="product-image">
+                            <img src="https://images.unsplash.com/photo-1564353129424-713d2e06f531?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Brewing Guide" class="product-image">
                             <div class="product-info">
-                                <div class="product-name">Pour Over Kit</div>
-                                <div class="product-origin">Brand: Hario</div>
-                                <div class="product-price">$29.99</div>
+                                <div class="product-name">Perfect Pour Over</div>
+                                <div class="product-origin">Brewing Guide</div>
                             </div>
                         </div>
                         
                         <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1546549095-8d9537c5e335?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="French Press" class="product-image">
+                            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Coffee Origin" class="product-image">
                             <div class="product-info">
-                                <div class="product-name">French Press</div>
-                                <div class="product-origin">Brand: Bodum</div>
-                                <div class="product-price">$34.99</div>
+                                <div class="product-name">Ethiopian Coffee</div>
+                                <div class="product-origin">Origin Story</div>
                             </div>
                         </div>
                         
                         <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1621678422715-aab975b51218?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="AeroPress" class="product-image">
+                            <img src="https://images.unsplash.com/photo-1516476892398-bdcab4c8dab8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Latte Art" class="product-image">
                             <div class="product-info">
-                                <div class="product-name">AeroPress Go</div>
-                                <div class="product-origin">Brand: AeroPress</div>
-                                <div class="product-price">$31.95</div>
+                                <div class="product-name">Latte Art Basics</div>
+                                <div class="product-origin">Tutorial</div>
                             </div>
                         </div>
                         
                         <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1575021986639-0788fdb3c9c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Espresso Beans" class="product-image">
+                            <img src="https://images.unsplash.com/photo-1523362289600-a70b4a0e09aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Espresso" class="product-image">
                             <div class="product-info">
-                                <div class="product-name">Espresso Blend</div>
-                                <div class="product-origin">Origin: Mixed</div>
-                                <div class="product-price">$18.99</div>
+                                <div class="product-name">Espresso Techniques</div>
+                                <div class="product-origin">Barista Tips</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="coffee-events">
+                    <div class="section-header">
+                        <div class="section-title">Upcoming Events</div>
+                        <a href="#" class="see-all">See All</a>
+                    </div>
+                    
+                    <div class="shop-card">
+                        <img src="https://images.unsplash.com/photo-1607107861269-4e58377a940f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Coffee Tasting" class="shop-image">
+                        <div class="shop-info">
+                            <div class="shop-header">
+                                <div class="shop-name-location">
+                                    <div class="shop-name">Coffee Tasting Workshop</div>
+                                    <div class="shop-location">
+                                        <span class="location-icon"><i class="fas fa-map-marker-alt"></i></span>
+                                        <span>THE.LAB.701 Flagship Store</span>
+                                    </div>
+                                </div>
+                                <div class="shop-rating">
+                                    <span class="detail-icon"><i class="fas fa-calendar"></i></span>
+                                    <span>Jun 15</span>
+                                </div>
+                            </div>
+                            <div class="shop-details">
+                                <div class="shop-detail">
+                                    <span class="detail-icon"><i class="fas fa-clock"></i></span>
+                                    <span>2:00 PM - 4:00 PM</span>
+                                </div>
+                                <div class="shop-detail">
+                                    <span class="detail-icon"><i class="fas fa-ticket-alt"></i></span>
+                                    <span>$25 / person</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -446,8 +436,12 @@
             <div>Home</div>
         </div>
         <div class="tab-item active">
-            <div class="tab-icon"><i class="fas fa-mug-hot"></i></div>
+            <div class="tab-icon"><i class="fas fa-compass"></i></div>
             <div>Discover</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-shopping-bag"></i></div>
+            <div>Shop</div>
         </div>
         <div class="tab-item">
             <div class="tab-icon"><i class="fas fa-box"></i></div>

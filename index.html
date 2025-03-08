@@ -330,16 +330,15 @@
         
         .frames-container {
             display: flex;
-            justify-content: center;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
             gap: 20px;
-            padding-bottom: 30px;
-            width: 100%;
+            padding: 20px 40px;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary-color) var(--light-color);
-            padding: 20px 0;
-            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .frames-container::-webkit-scrollbar {
@@ -357,13 +356,15 @@
         }
         
         .frame-wrapper {
+            flex: 0 0 auto;
+            width: auto;
+            max-width: none;
+            scroll-snap-align: start;
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: transform 0.3s ease;
-            flex: 0 0 auto;
-            scroll-snap-align: center;
-            position: relative;
+            animation: fadeIn 0.5s ease-out forwards;
+            animation-delay: calc(var(--animation-order) * 0.1s);
         }
         
         .frame-wrapper:hover {
@@ -619,35 +620,46 @@
         }
         
         .section-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
+            justify-content: space-between;
+            padding: 0 20px;
+            pointer-events: none;
+            z-index: 10;
+            left: 0;
         }
         
         .section-control-btn {
-            background-color: var(--light-color);
-            color: var(--primary-color);
-            border: none;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            font-size: 18px;
+            pointer-events: auto;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+            opacity: 0.85;
         }
         
         .section-control-btn:hover {
             background-color: var(--primary-color);
             color: white;
-            transform: scale(1.1);
+            opacity: 1;
+            transform: scale(1.05);
         }
         
-        .section-control-btn i {
-            font-size: 16px;
+        .screens-section {
+            position: relative;
+            margin-bottom: 60px;
         }
         
         @media (max-width: 1400px) {
@@ -1043,12 +1055,21 @@
                             </ul>
                         </div>
                         <div class="overview-card">
-                            <h3><i class="fas fa-map-marker-alt"></i> Discovery</h3>
-                            <p>Explore and discover new coffee varieties based on your taste preferences and curated recommendations from our experts.</p>
+                            <h3><i class="fas fa-compass"></i> Discovery</h3>
+                            <p>Explore coffee knowledge, find local coffee shops, and discover upcoming events in the coffee community.</p>
                             <ul>
-                                <li>Personalized recommendations</li>
-                                <li>Detailed origin stories</li>
-                                <li>Flavor profile matching</li>
+                                <li>Find coffee shops around you</li>
+                                <li>Learn coffee brewing techniques</li>
+                                <li>Stay updated on coffee events</li>
+                            </ul>
+                        </div>
+                        <div class="overview-card">
+                            <h3><i class="fas fa-shopping-bag"></i> Shop</h3>
+                            <p>Shop for coffee beans and equipment from our official store and partner coffee shops around the country.</p>
+                            <ul>
+                                <li>Official store products</li>
+                                <li>Partner coffee shop offerings</li>
+                                <li>Brewing equipment collection</li>
                             </ul>
                         </div>
                     </div>
@@ -1064,9 +1085,14 @@
                 <div class="section-content-container">
                     <div class="key-features-grid">
                         <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-thumbs-up"></i></div>
-                            <div class="feature-title">Personalized Coffee Discovery</div>
-                            <div class="feature-description">Browse and discover coffee products based on flavor profiles, origin, and roast levels. Our recommendation engine learns from your preferences.</div>
+                            <div class="feature-icon"><i class="fas fa-compass"></i></div>
+                            <div class="feature-title">Coffee Exploration & Discovery</div>
+                            <div class="feature-description">Find coffee shops near you, learn about coffee brewing techniques, and discover coffee events in your community.</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-shopping-bag"></i></div>
+                            <div class="feature-title">Dedicated Shopping Experience</div>
+                            <div class="feature-description">Browse and purchase coffee beans and equipment from our official store and partner coffee shops across the country.</div>
                         </div>
                         <div class="feature-item">
                             <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
@@ -1164,10 +1190,10 @@
             </div>
         </div>
         
-        <div id="onboarding" class="screens-section">
+        <div id="onboarding-auth" class="screens-section">
             <div class="section-title">Onboarding & Authentication</div>
             <div class="frames-container">
-                <!-- Welcome/Onboarding Screen -->
+                <!-- Welcome Screen -->
                 <div class="frame-wrapper">
                     <div class="frame-label">Welcome Screen</div>
                     <div class="device-frame">
@@ -1221,6 +1247,24 @@
                     </div>
                 </div>
                 
+                <!-- Coffee Shop Detail Screen -->
+                <div class="frame-wrapper">
+                    <div class="frame-label">Coffee Shop Detail</div>
+                    <div class="device-frame">
+                        <div class="device-buttons"></div>
+                        <iframe src="coffee-shop-detail.html" class="screen-iframe" frameborder="0"></iframe>
+                    </div>
+                </div>
+                
+                <!-- Shop Screen -->
+                <div class="frame-wrapper">
+                    <div class="frame-label">Shop</div>
+                    <div class="device-frame">
+                        <div class="device-buttons"></div>
+                        <iframe src="shop.html" class="screen-iframe" frameborder="0"></iframe>
+                    </div>
+                </div>
+                
                 <!-- Product Detail Screen -->
                 <div class="frame-wrapper">
                     <div class="frame-label">Product Detail</div>
@@ -1236,7 +1280,7 @@
             </div>
         </div>
         
-        <div id="subscription" class="screens-section">
+        <div id="subscription-orders" class="screens-section">
             <div class="section-title">Subscription & Orders</div>
             <div class="frames-container">
                 <!-- Subscription Screen -->
@@ -1272,7 +1316,7 @@
             </div>
         </div>
         
-        <div id="profile" class="screens-section">
+        <div id="profile-settings" class="screens-section">
             <div class="section-title">User Profile & Settings</div>
             <div class="frames-container">
                 <!-- Profile Screen -->

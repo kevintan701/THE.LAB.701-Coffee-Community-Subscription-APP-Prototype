@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop - Coffee App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #fff;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .shop-detail-screen {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: #f9f9f9;
+        }
+        
+        .shop-header {
+            background-color: transparent;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+        
+        .back-button {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-right: 10px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-left: auto;
+        }
+        
+        .action-button {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .shop-content {
+            flex: 1;
+            overflow-y: auto;
+            padding-bottom: 20px;
+        }
+        
+        .shop-image-gallery {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shop-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .indicator.active {
+            background-color: white;
+            width: 20px;
+            border-radius: 10px;
+        }
+        
+        .shop-info {
+            background-color: white;
+            border-radius: 30px 30px 0 0;
+            margin-top: -30px;
+            padding: 25px 20px;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .shop-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .shop-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .shop-location {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .location-icon {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+        
+        .shop-rating {
+            display: flex;
+            align-items: center;
+            padding: 6px 12px;
+            background-color: var(--light-color);
+            border-radius: 15px;
+            margin-left: 10px;
+        }
+        
+        .rating-value {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-left: 5px;
+        }
+        
+        .shop-badges {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .shop-badge {
+            padding: 6px 12px;
+            border-radius: 15px;
+            background-color: #f0f0f0;
+            font-size: 12px;
+            color: #555;
+        }
+        
+        .shop-details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .detail-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background-color: var(--light-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        
+        .detail-text {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            margin-top: 25px;
+        }
+        
+        .shop-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 25px;
+        }
+        
+        .action-buttons-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .primary-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .secondary-btn {
+            background-color: var(--light-color);
+            color: var(--primary-color);
+        }
+        
+        .action-btn i {
+            margin-right: 8px;
+        }
+        
+        .menu-tab-container {
+            border-bottom: 1px solid #e0e0e0;
+            margin: 0 -20px 20px;
+            padding: 0 20px;
+        }
+        
+        .menu-tabs {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            scrollbar-width: none;
+        }
+        
+        .menu-tabs::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .menu-tab {
+            white-space: nowrap;
+            padding: 10px 0;
+            font-size: 16px;
+            font-weight: 500;
+            color: #888;
+            position: relative;
+        }
+        
+        .menu-tab.active {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .menu-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f0f0f0;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            background-color: #f2f2f2; /* Fallback color in case image fails to load */
+        }
+        
+        .product-info {
+            padding: 12px;
+        }
+        
+        .product-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .product-origin {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+        
+        .product-price {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .reviews-list {
+            margin-top: 15px;
+        }
+        
+        .review-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .reviewer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+        
+        .reviewer-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .reviewer-info {
+            flex: 1;
+        }
+        
+        .reviewer-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .review-date {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .reviewer-rating {
+            display: flex;
+            color: #FFD700;
+            font-size: 12px;
+        }
+        
+        .review-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #555;
+        }
+        
+        .map-container {
+            height: 200px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            background-color: #e9e9e9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .map-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .address-container {
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .address-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        
+        .directions-link {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+        
+        .directions-link i {
+            margin-right: 5px;
+        }
+        
+        .open-hours {
+            margin-bottom: 25px;
+        }
+        
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .day {
+            color: #555;
+        }
+        
+        .hours {
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .hours-row.today {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-bar-left">
+            <span class="time">9:41</span>
+        </div>
+        <div class="status-bar-right">
+            <span class="signal-icon"><i class="fas fa-signal"></i></span>
+            <span class="wifi-icon"><i class="fas fa-wifi"></i></span>
+            <span class="battery-icon"><i class="fas fa-battery-full"></i></span>
+        </div>
+    </div>
+    
+    <!-- Content Area -->
+    <div class="app-content">
+        <div class="shop-detail-screen">
+            <div class="shop-header">
+                <a href="#" class="back-button" aria-label="Go back">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="action-buttons">
+                    <a href="#" class="action-button" aria-label="Share">
+                        <i class="fas fa-share-alt"></i>
+                    </a>
+                    <a href="#" class="action-button" aria-label="Add to favorites">
+                        <i class="far fa-heart"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="shop-content">
+                <div class="shop-image-gallery">
+                    <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="THE.LAB.701 Flagship Store" class="shop-image">
+                    <div class="gallery-indicators">
+                        <div class="indicator active"></div>
+                        <div class="indicator"></div>
+                        <div class="indicator"></div>
+                    </div>
+                </div>
+                
+                <div class="shop-info">
+                    <div class="shop-title-row">
+                        <div>
+                            <div class="shop-title">THE.LAB.701 Flagship Store</div>
+                            <div class="shop-location">
+                                <span class="location-icon"><i class="fas fa-map-marker-alt"></i></span>
+                                <span>456 Coffee Boulevard, San Francisco</span>
+                            </div>
+                        </div>
+                        <div class="shop-rating">
+                            <i class="fas fa-star" style="color: #FFD700;"></i>
+                            <span class="rating-value">4.8</span>
+                        </div>
+                    </div>
+                    
+                    <div class="shop-badges">
+                        <div class="shop-badge"><i class="fas fa-wifi"></i> Free Wi-Fi</div>
+                        <div class="shop-badge"><i class="fas fa-utensils"></i> Food Available</div>
+                        <div class="shop-badge"><i class="fas fa-plug"></i> Power Outlets</div>
+                        <div class="shop-badge"><i class="fas fa-parking"></i> Parking</div>
+                    </div>
+                    
+                    <div class="shop-details-grid">
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="detail-text">Open until 8PM</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fas fa-walking"></i>
+                            </div>
+                            <div class="detail-text">2.3 miles away</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="detail-text">(415) 555-7010</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="detail-text">thelab701.com</div>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons-row">
+                        <a href="#" class="action-btn primary-btn">
+                            <i class="fas fa-shopping-bag"></i>
+                            Shop Products
+                        </a>
+                        <a href="#" class="action-btn secondary-btn">
+                            <i class="fas fa-directions"></i>
+                            Directions
+                        </a>
+                    </div>
+                    
+                    <div class="shop-description">
+                        THE.LAB.701 Flagship Store is a premium coffee destination featuring artisanal brews, expert baristas, and a curated selection of specialty coffee beans from around the world. Our comfortable atmosphere is perfect for work, meetings, or simply enjoying a quality cup of coffee.
+                    </div>
+                    
+                    <div class="menu-tab-container">
+                        <div class="menu-tabs">
+                            <div class="menu-tab active">Coffee Beans</div>
+                            <div class="menu-tab">Brew Gear</div>
+                            <div class="menu-tab">Drinks Menu</div>
+                            <div class="menu-tab">Food</div>
+                            <div class="menu-tab">Reviews</div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-title">Featured Products</div>
+                    
+                    <div class="product-grid">
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Ethiopian Yirgacheffe" class="product-image">
+                            <div class="product-info">
+                                <div class="product-name">Ethiopian Yirgacheffe</div>
+                                <div class="product-origin">Medium Roast</div>
+                                <div class="product-price">$18.99</div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Colombian Supremo" class="product-image">
+                            <div class="product-info">
+                                <div class="product-name">Colombian Supremo</div>
+                                <div class="product-origin">Medium-Dark Roast</div>
+                                <div class="product-price">$19.99</div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Precision Grinder" class="product-image">
+                            <div class="product-info">
+                                <div class="product-name">Precision Grinder</div>
+                                <div class="product-origin">Stainless Steel</div>
+                                <div class="product-price">$79.99</div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Ceramic Mug Set" class="product-image">
+                            <div class="product-info">
+                                <div class="product-name">Ceramic Mug Set</div>
+                                <div class="product-origin">Set of 2</div>
+                                <div class="product-price">$24.99</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-title">Top Reviews</div>
+                    
+                    <div class="reviews-list">
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-avatar">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80" alt="Alex Johnson">
+                                </div>
+                                <div class="reviewer-info">
+                                    <div class="reviewer-name">Alex Johnson</div>
+                                    <div class="review-date">2 weeks ago</div>
+                                </div>
+                                <div class="reviewer-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="review-text">
+                                Incredible coffee and atmosphere. Their Ethiopian Yirgacheffe is exceptional and the baristas are very knowledgeable. Great place to work or meet friends.
+                            </div>
+                        </div>
+                        
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-avatar">
+                                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80" alt="Sophia Carter">
+                                </div>
+                                <div class="reviewer-info">
+                                    <div class="reviewer-name">Sophia Carter</div>
+                                    <div class="review-date">1 month ago</div>
+                                </div>
+                                <div class="reviewer-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                            <div class="review-text">
+                                Love the variety of beans they offer. The staff are friendly and always ready to help with brewing advice. Their pour-over is a must-try!
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-title">Location & Hours</div>
+                    
+                    <div class="map-container">
+                        <img src="https://maps.googleapis.com/maps/api/staticmap?center=San+Francisco,CA&zoom=13&size=600x300&maptype=roadmap&markers=color:brown%7C37.7749,-122.4194&key=YOUR_API_KEY" alt="Map location">
+                    </div>
+                    
+                    <div class="address-container">
+                        <div class="address-text">
+                            456 Coffee Boulevard<br>
+                            San Francisco, CA 94103<br>
+                            United States
+                        </div>
+                        <a href="#" class="directions-link">
+                            <i class="fas fa-directions"></i>
+                            <span>Get Directions</span>
+                        </a>
+                    </div>
+                    
+                    <div class="open-hours">
+                        <div class="hours-row today">
+                            <div class="day">Monday (Today)</div>
+                            <div class="hours">7:00 AM - 8:00 PM</div>
+                        </div>
+                        <div class="hours-row">
+                            <div class="day">Tuesday</div>
+                            <div class="hours">7:00 AM - 8:00 PM</div>
+                        </div>
+                        <div class="hours-row">
+                            <div class="day">Wednesday</div>
+                            <div class="hours">7:00 AM - 8:00 PM</div>
+                        </div>
+                        <div class="hours-row">
+                            <div class="day">Thursday</div>
+                            <div class="hours">7:00 AM - 8:00 PM</div>
+                        </div>
+                        <div class="hours-row">
+                            <div class="day">Friday</div>
+                            <div class="hours">7:00 AM - 9:00 PM</div>
+                        </div>
+                        <div class="hours-row">
+                            <div class="day">Saturday</div>
+                            <div class="hours">8:00 AM - 9:00 PM</div>
+                        </div>
+                        <div class="hours-row">
+                            <div class="day">Sunday</div>
+                            <div class="hours">8:00 AM - 7:00 PM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tab Bar -->
+    <div class="tab-bar">
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-home"></i></div>
+            <div>Home</div>
+        </div>
+        <div class="tab-item active">
+            <div class="tab-icon"><i class="fas fa-compass"></i></div>
+            <div>Discover</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-shopping-bag"></i></div>
+            <div>Shop</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-box"></i></div>
+            <div>Subscribe</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-user"></i></div>
+            <div>Profile</div>
+        </div>
+    </div>
+</body>
+</html> 
