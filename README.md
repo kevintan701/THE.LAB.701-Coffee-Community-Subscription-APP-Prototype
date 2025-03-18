@@ -1,5 +1,7 @@
 # THE.LAB.701 Coffee Community & Subscription App Prototype
 
+Prototype Available at: https://kevintan701.github.io/THE.LAB.701-Coffee-Community-Subscription-APP-Prototype/
+
 ## Project Overview
 
 This repository contains a high-fidelity prototype for a digital coffee community and subscription app that connects coffee enthusiasts with premium coffee products and like-minded individuals. The prototype demonstrates the user interface and experience for discovering new coffee varieties, managing subscriptions, and engaging with a passionate coffee community.
